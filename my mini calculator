@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+double pluss(double a,double b) { return a+b; }
+double minuss(double a,double b) { return a-b; }
+double mnoshenya(double a,double b) { return a*b; }
+double dilenya(double a,double b) {
+    if(b == 0) {
+        cout << "ERROR: Cannot divide by zero!\n";
+        return 0;
+    } else {
+        return a/b;
+    }
+}
+
+int main() {
+    double res = 0, num1, num2;
+    bool enter = true;
+    char op;
+    string input;
+
+    cout << "Enter ! to exit\n";
+
+    while(true) {
+        if(enter) cout << "Enter the first expression: \n";
+        else cout << "Continue the expression: \n";
+
+        if(enter) {
+            cin >> input;
+            if(input == "!") break;
+            num1 = stod(input);
+            cin >> op >> input;
+            if(input == "!") break;
+            num2 = stod(input);
+            enter = false;
+        } else {
+            cin >> op >> input;
+            if(input == "!") break;
+            num1 = res;
+            num2 = stod(input);
+        }
+
+        if(op=='+') res = pluss(num1,num2);
+        else if(op=='-') res = minuss(num1,num2);
+        else if(op=='*') res = mnoshenya(num1,num2);
+        else if(op=='/') res = dilenya(num1,num2);
+        else {
+            cout << "ERROR: Unknown operation!\n";
+            continue;
+        }
+
+        cout << "Result: " << res << endl;
+    }
+
+    cout << "Calculator closed.\n";
+}
