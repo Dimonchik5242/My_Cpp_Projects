@@ -1,0 +1,76 @@
+#include <bits/stdc++.h>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+
+using namespace std;
+
+long long sproba,zagadane,vvedene,record,level,maxx,granica;
+
+string vvod;
+int main() {
+    srand(time(0));
+    record = 10000;
+    sproba = 0;
+    granica = 10;
+
+    cout << "Choose level " << endl;
+    cout << "1 - Easy 1 - 50 " << endl;
+    cout << "2 - Normal 1 - 100 " << endl;
+    cout << "3 - Hard 1 - 500 " << endl;
+    cout << "4 - Very Hard 1 - 1000 " << endl;
+    cout << "5 - Unreal 1 - 10000 " << endl;
+    cin >> level;
+
+    if(level == 1) maxx = 50;
+    else if(level == 2) maxx = 100;
+    else if(level == 3) maxx = 500;
+    else if(level == 4) maxx = 1000;
+    else if(level == 5) maxx = 10000;
+    else {
+        cout << "Wrong level level = Easy " << endl;
+        maxx = 50;
+    }
+
+    zagadane = rand() % maxx + 1;
+
+    cout << "Gues number from 1 to " << maxx << endl;
+    cout << "Enter ! to exit" << endl;
+
+    while(true) {
+        cout << "Your option ";
+        cin >> vvod;
+
+        if(vvod == "!"){
+            cout << "Game over " << endl;
+            break;
+        }
+    try {
+    vvedene = stoi(vvod);
+    }
+    catch(...) {
+    cout << "Error" << endl;
+    continue;
+    }
+    sproba ++;
+    if(vvedene == zagadane){
+        cout << "You guessed the number " << zagadane << " in " << sproba << " tries! " << endl;
+        cout << "You win" << endl << "Game over" << endl;
+        break;
+    }
+    else if (vvedene > zagadane) {
+            if (vvedene - zagadane <= granica)
+                cout << "A little less " << endl;
+            else
+                cout << "Less " << endl;
+    }
+    else {
+            if (zagadane - vvedene <= granica)
+                cout << "A little more " << endl;
+            else
+                cout << "More" << endl;
+        }
+    }
+
+    return 0;
+}
